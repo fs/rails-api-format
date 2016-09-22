@@ -1,32 +1,71 @@
 # Rails API Format
 
-## Errors
+## About
 
-```js
-// 404 Not Found
-{
-  "error": {
-    "status": 404,
-    "error": "Not Found."
-  }
-}
+`Rails API Format` works together with [ActiveModelSerializers](https://github.com/rails-api/active_model_serializers) and [Responders](https://github.com/plataformatec/responders) gems and makes JSON response compatible with [REST API Design](https://github.com/fs/rails-api-format/wiki/REST-API-Design).
 
-// 422 Unprocessable Entity
-{
-  "error": {
-    "status": 422,
-    "error": "Unprocessable Entity",
-    "validations": {
-      "first_name": ["can't be blank"]
-    }
-  }
-}
+For example, instead of this:
 
-// 401 Unauthorized
+```
+{ "error" => "Invalid email or password." }
+```
+
+your response will look like this:
+
+```
 {
-  "error": {
-    "status": 401,
-    "message": "Unauthorized"
+  "error" => {
+    "id" => "c6db702b-e6ea-4189-ae3e-e7ddb775cc31",
+    "status" => 401,
+    "error" => "Invalid email or password."
   }
 }
 ```
+
+## Install
+
+Add this line to your application's Gemfile:
+
+```
+gem "rails-api-format", git: "https://github.com/fs/rails-api-format.git"
+```
+
+and then execute:
+
+```
+$ bundle
+```
+
+## Usage
+
+After installing you should not to do anything special, response will be [standardized](https://github.com/fs/rails-api-format/wiki/REST-API-Design) automatically.
+
+Also you can build your own error object to respond with, e.g.:
+
+```
+RailsApiFormat::Error.new(status: :not_found, error: I18n.t("activity.errors.user.not_found"))
+```
+
+Another handy thing is that how you can check invalid response in your acceptance specs.
+Insted of this:
+
+```
+expect(respons["error"]).to eq("Invalid email or password.")
+```
+
+you can use built in matcher:
+
+```
+expect(response).to be_an_error_representation(:unauthorized, "Invalid email or password.")
+```
+
+## Getting Help
+
+If you find a bug, please report an [Issue](https://github.com/fs/rails-api-format/issues/new).
+
+## Credits
+
+`Rails API Format` is maintained and was written by [Flatstack](http://www.flatstack.com) with the help of our [contributors](http://github.com/fs/rails-api-format/contributors).
+
+[<img src="http://www.flatstack.com/logo.svg" width="100"/>](http://www.flatstack.com)
+
