@@ -1,7 +1,7 @@
 module RailsApiFormat
   class Responder < ActionController::Responder
     def api_behavior
-      fail MissingRenderer.new(format), "No renderer defined for format: #{format}" unless has_renderer?
+      raise MissingRenderer.new(format), "No renderer defined for format: #{format}" unless has_renderer?
 
       if post?
         display(resource, status: :created)

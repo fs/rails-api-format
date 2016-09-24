@@ -1,5 +1,7 @@
 # Rails API Format
 
+[![Build Status](https://travis-ci.org/fs/rails-api-format.svg?branch=master)](https://travis-ci.org/fs/rails-api-format)
+
 ## About
 
 `Rails API Format` works together with [ActiveModelSerializers](https://github.com/rails-api/active_model_serializers) and [Responders](https://github.com/plataformatec/responders) gems and makes JSON response compatible with [REST API Design](https://github.com/fs/rails-api-format/wiki/REST-API-Design).
