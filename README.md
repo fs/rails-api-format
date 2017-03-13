@@ -49,10 +49,10 @@ RailsApiFormat::Error.new(status: :not_found, error: I18n.t("activity.errors.use
 ```
 
 Another handy thing is that how you can check invalid response in your acceptance specs.
-Insted of this:
+Instead of this:
 
 ```
-expect(respons["error"]).to eq("Invalid email or password.")
+expect(response["error"]).to eq("Invalid email or password.")
 ```
 
 you can use built in matcher:
@@ -70,4 +70,3 @@ If you find a bug, please report an [Issue](https://github.com/fs/rails-api-form
 `Rails API Format` is maintained and was written by [Flatstack](http://www.flatstack.com) with the help of our [contributors](http://github.com/fs/rails-api-format/contributors).
 
 [<img src="http://www.flatstack.com/logo.svg" width="100"/>](http://www.flatstack.com)
-
